@@ -24,7 +24,7 @@ export default function ViewSlipsList(props) {
     return (
         <div className="col-md-6">
             <div className="bg-white p-4 shadow rounded text-center min-vh-25">
-                <h2>View Slips List</h2>
+                <h2 className="text-3xl font-bold underline">View Slips List</h2>
 
                 <table className="table">
                     <thead>
