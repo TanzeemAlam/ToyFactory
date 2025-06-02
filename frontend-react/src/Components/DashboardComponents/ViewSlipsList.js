@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ViewSlip from '../ViewSlip';
 
 export default function ViewSlipsList(props) {
 
     const data = props.customerData.map((customerInfo) => {
         return (
-            <tr>
+            <tr key={customerInfo.id}>
                 <td>{customerInfo.name}</td>
                 <td>{customerInfo.date}</td>
                 <td>{customerInfo.billType}</td>
                 <td>{customerInfo.amount}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary btn-sm"> View Slip </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" style={{ marginLeft: '10px' }}> Download Bill </button>
+                    <button type="button" className="btn btn-outline-primary btn-sm">
+                        <ViewSlip slipData={customerInfo}/>
+                    </button>
+                    <button type="button" className="btn btn-outline-danger btn-sm" style={{ marginLeft: '10px' }}> Download Bill </button>
                 </td>
             </tr>
         )
@@ -23,7 +26,7 @@ export default function ViewSlipsList(props) {
             <div className="bg-white p-4 shadow rounded text-center min-vh-25">
                 <h2>View Slips List</h2>
 
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Customer </th>
@@ -51,6 +54,5 @@ ViewSlipsList.propTypes = {
             billType: PropTypes.string,
             amount: PropTypes.number
         })
-    ),
-    test: PropTypes.string
+    )
 }

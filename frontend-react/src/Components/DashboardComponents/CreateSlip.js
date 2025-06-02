@@ -1,26 +1,46 @@
 import React from 'react'
 
 export default function CreateSlip() {
+
+    function createSlip(e) {
+
+        //handling browser reload
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+
+        console.log(Object.fromEntries(formData.entries()));
+    }
+
+    function addSlip() {
+
+    }
+
+    function resetForm() {
+
+    }
+
     return (
-        <div className="col-md-6">
+        <div className="col-md-6" id="createSlip">
             <div className="bg-white p-4 shadow rounded text-center min-vh-25">
-                <h2>Create Slip</h2>
+                <h2 className="text-3xl font-bold underline">Create Slip</h2>
                 <br />
-                <form>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="First name" aria-label="First name" />
+                <form onSubmit={createSlip}>
+                    <div className="row mb-3">
+                        <div className="col">
+                            <input type="text" name="firstName" className="form-control" placeholder="First name" aria-label="First name" />
                         </div>
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" />
+                        <div className="col">
+                            <input type="text" name="lastName" className="form-control" placeholder="Last name" aria-label="Last name" />
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="product">Product</label>
-                            <select class="form-select" id="product">
-                                <option selected>Choose...</option>
+                    <div className="row mb-3">
+                        <div className="input-group mb-3">
+                            <label className="input-group-text" htmlFor="product">Product</label>
+                            <select className="form-select" id="product" defaultValue="choose">
+                                <option value="choose">Choose...</option>
                                 <option value="1">Product 1</option>
                                 <option value="2">Product 2</option>
                                 <option value="3">Product 2</option>
@@ -28,40 +48,49 @@ export default function CreateSlip() {
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="quantity">Quantity</label>
-                            <input type="text" class="form-control" placeholder="" aria-label="" />
+                    <div className="row mb-3">
+                        <div className="input-group mb-3">
+                            <label className="input-group-text" htmlFor="quantity">Quantity</label>
+                            <input type="text" name="quantity" className="form-control" placeholder="" aria-label="" />
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <legend class="col-form-label col-sm-2 pt-0">Bill Type</legend>
-                        <div class="col-sm-10">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked />
-                                <label class="form-check-label" for="gridRadios1"> Kaccha Bill </label>
+                    <div className="row mb-3">
+                        <legend className="col-form-label col-sm-2 pt-0">Bill Type</legend>
+                        <div className="col-sm-10">
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Kaccha" defaultChecked={true} />
+                                <label className="form-check-label" htmlFor="gridRadios1" style={{ float: 'left' }}> Kaccha  </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" />
-                                <label class="form-check-label" for="gridRadios2"> Pakka Bill </label>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Pakka" />
+                                <label className="form-check-label" htmlFor="gridRadios2" style={{ float: 'left' }}> Pakka </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="Bill Amount" aria-label="Bill Amount" />
+                    <div className="row mb-3">
+                        <div className="col">
+                            <input type="text" name="amount" className="form-control" placeholder="Bill Amount" aria-label="Bill Amount" />
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="date" id="dateInput" name="dateInput" />
+                    <div className="row mb-3">
+                        <div className="col">
+                            <input type="date" id="dateInput" className="form-control" />
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <div className="row mb-3">
+                        <div className="col">
+                            <button type="submit" className="btn btn-primary btn-lg" disabled>Create</button>
+                        </div>
+                    </div>
+
+                    <div className="row mb-3">
+                        <div className="col">
+                            <button type="reset" className="btn btn-outline-secondary btn-sm" style={{float: 'left'}}> Reset</button>
+                        </div></div>
                 </form>
             </div>
         </div>
