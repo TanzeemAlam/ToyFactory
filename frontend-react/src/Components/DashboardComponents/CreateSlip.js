@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 export default function CreateSlip() {
+
+    const resetButtonRef = useRef(null);
 
     function createSlip(e) {
 
@@ -11,14 +13,19 @@ export default function CreateSlip() {
         const formData = new FormData(form);
 
         console.log(Object.fromEntries(formData.entries()));
+
+        alert('Slip created');
+
+        resetForm();
     }
 
-    function addSlip() {
+    function uploadSlipData() {
 
     }
 
     function resetForm() {
-
+        resetButtonRef.current.click();
+        alert('Form cleared');
     }
 
     return (
@@ -29,17 +36,17 @@ export default function CreateSlip() {
                 <form onSubmit={createSlip}>
                     <div className="row mb-3">
                         <div className="col">
-                            <input type="text" name="firstName" className="form-control" placeholder="First name" aria-label="First name" />
+                            <input type="text" name="firstName" className="form-control" placeholder="First name" aria-label="First name" required/>
                         </div>
                         <div className="col">
-                            <input type="text" name="lastName" className="form-control" placeholder="Last name" aria-label="Last name" />
+                            <input type="text" name="lastName" className="form-control" placeholder="Last name" aria-label="Last name" required/>
                         </div>
                     </div>
 
                     <div className="row mb-3">
                         <div className="input-group mb-3">
                             <label className="input-group-text" htmlFor="product">Product</label>
-                            <select className="form-select" id="product" defaultValue="choose">
+                            <select className="form-select" id="product" defaultValue="choose" required>
                                 <option value="choose">Choose...</option>
                                 <option value="1">Product 1</option>
                                 <option value="2">Product 2</option>
@@ -51,7 +58,7 @@ export default function CreateSlip() {
                     <div className="row mb-3">
                         <div className="input-group mb-3">
                             <label className="input-group-text" htmlFor="quantity">Quantity</label>
-                            <input type="text" name="quantity" className="form-control" placeholder="" aria-label="" />
+                            <input type="text" name="quantity" className="form-control" placeholder="" aria-label="" required/>
                         </div>
                     </div>
 
@@ -59,7 +66,7 @@ export default function CreateSlip() {
                         <legend className="col-form-label col-sm-2 pt-0">Bill Type</legend>
                         <div className="col-sm-10">
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Kaccha" defaultChecked={true} />
+                                <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Kaccha" defaultChecked={true} required/>
                                 <label className="form-check-label" htmlFor="gridRadios1" style={{ float: 'left' }}> Kaccha  </label>
                             </div>
                             <div className="form-check">
@@ -71,25 +78,25 @@ export default function CreateSlip() {
 
                     <div className="row mb-3">
                         <div className="col">
-                            <input type="text" name="amount" className="form-control" placeholder="Bill Amount" aria-label="Bill Amount" />
+                            <input type="text" name="amount" className="form-control" placeholder="Bill Amount" aria-label="Bill Amount" required/>
                         </div>
                     </div>
 
                     <div className="row mb-3">
                         <div className="col">
-                            <input type="date" id="dateInput" className="form-control" />
+                            <input type="date" id="dateInput" className="form-control" required/>
                         </div>
                     </div>
 
                     <div className="row mb-3">
                         <div className="col">
-                            <button type="submit" className="btn btn-primary btn-lg" disabled>Create</button>
+                            <button type="submit" className="btn btn-primary btn-lg">Create</button>
                         </div>
                     </div>
 
                     <div className="row mb-3">
                         <div className="col">
-                            <button type="reset" className="btn btn-outline-secondary btn-sm" style={{float: 'left'}}> Reset</button>
+                            <button type="reset" ref={resetButtonRef} className="btn btn-outline-secondary btn-sm" style={{float: 'left'}}> Reset</button>
                         </div></div>
                 </form>
             </div>
