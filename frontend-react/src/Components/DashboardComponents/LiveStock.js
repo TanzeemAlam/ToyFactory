@@ -1,7 +1,16 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import { useState } from 'react'
+import UpdateStockModal from '../Modal/UpdateStockModal'
 
 export default function LiveStock(props) {
+
+  const products = props.stock.map((product) => {
+
+    return (
+      <li key={product.id} className="list-group-item"> {product.name} - {product.quantity}</li>
+    )
+  });
+
   return (
     <>
       <div className="col-md-6 mx-auto">
@@ -10,20 +19,25 @@ export default function LiveStock(props) {
             <h5 className="card-title text-center">Live Stock Value</h5>
           </div>
           <ul className="list-group list-group-flush">
-            <li className="list-group-item">Product 1 - {props.stock.product1}</li>
-            <li className="list-group-item">Product 2 - {props.stock.product2}</li>
-            <li className="list-group-item">Product 3 - {props.stock.product3}</li>
+            {products}
           </ul>
         </div>
       </div>
       <br />
-      <div className="d-flex justify-content-center mb-4"><button type="button" className="btn btn-lg btn-outline-primary">Add/Update Stock</button></div>
+      <div className="d-flex justify-content-center mb-4">
+        <button type="button" className="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateStockModal">
+          Add/Update Stock
+        </button>
+        <UpdateStockModal title="Update Stock" />
+      </div>
     </>
   )
 }
 
 LiveStock.propTypes = {
-  product1: PropTypes.number,
-  product2: PropTypes.number,
-  product3: PropTypes.number
+  stock: PropTypes.shape({
+    productId: PropTypes.number,
+    name: PropTypes.string,
+    quantity: PropTypes.number
+  })
 }

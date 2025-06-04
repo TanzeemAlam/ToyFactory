@@ -4,11 +4,12 @@ import CreateBill from './DashboardComponents/CreateBill';
 import RecentBills from './DashboardComponents/RecentBills';
 
 class Dashboard extends React.Component {
-    liveStock = {
-        product1: 123,
-        product2: 231,
-        product3: 10
-    }
+    liveStock = [
+        { productId: 1, name: "Product 1", quantity: 4000 },
+        { productId: 2, name: "Product 2", quantity: 300 },
+        { productId: 3, name: "Product 3", quantity: 100 },
+        { productId: 4, name: "Product 4", quantity: 6000 },
+    ]
 
     data = [
         { id: 1, name: "Tanzeem ", date: "27-05-2025", billType: "Kaccha", amount: 5000 },

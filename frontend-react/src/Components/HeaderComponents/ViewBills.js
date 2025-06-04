@@ -1,35 +1,53 @@
-import React from 'react'
+import React from 'react';
+import Header from '../Header';
+import ViewSlipModal from '../Modal/ViewSlipModal';
 
-export default function ViewBills() {
+export default function ViewBills(props) {
 
-    const data = props.customerData.map((customerInfo) => {
+    const customerData = [
+        { id: 1, name: "Tanzeem ", date: "27-05-2025", billType: "Kaccha", amount: 5000 },
+        { id: 2, name: "Ilma", date: "25-05-2025", billType: "Pakka", amount: 400 },
+        { id: 3, name: "Saniya", date: "19-05-2025", billType: "Kaccha", amount: 15000 }
+    ];
+
+    const data = customerData.map((customerInfo) => {
+
+        const dataTarget = "#viewModal_" + customerInfo.id;
+
         return (
             <tr key={customerInfo.id}>
+                <th scope="row">{customerInfo.id}</th>
                 <td>{customerInfo.name}</td>
                 <td>{customerInfo.date}</td>
                 <td>{customerInfo.billType}</td>
                 <td>{customerInfo.amount}</td>
                 <td>
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    <button type="button" className="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target={dataTarget}>
                         View Slip
                     </button>
-                    
+                    <ViewSlipModal slipData={customerInfo} />
                     <button type="button" className="btn btn-outline-danger btn-sm" style={{ marginLeft: '10px' }}> Download Bill </button>
                 </td>
             </tr>
         )
     });
 
+    const billCount = 3;
+
+
+
     return (
         <>
-            <div className="col-md-6">
-                <div className="bg-white p-4 shadow rounded text-center min-vh-25">
-                    <h2 className="text-3xl font-bold underline">Recent Slips</h2>
+            <Header title="Toy Factory" searchBar={true} />
 
-                    <table className="table">
+            <div className="min-vh-100 bg-light p-3">
+                <div className="row g-3 mb-4">
+                    <table className="table table-striped caption-top">
+                        <caption>Total Bills - {billCount} </caption>
                         <thead>
                             <tr>
-                                <th scope="col">Customer </th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Bill Type</th>
                                 <th scope="col">Bill Amount</th>
