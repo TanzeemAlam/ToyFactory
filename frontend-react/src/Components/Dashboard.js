@@ -1,9 +1,15 @@
-import React from 'react'
-import CreateSlip from './DashboardComponents/CreateSlip';
-import ViewSlipsList from './DashboardComponents/ViewSlipsList';
+import React from 'react';
+import LiveStock from './DashboardComponents/LiveStock';
+import CreateBill from './DashboardComponents/CreateBill';
+import RecentBills from './DashboardComponents/RecentBills';
 
 class Dashboard extends React.Component {
-    liveStock = 250;
+    liveStock = [
+        { productId: 1, name: "Product 1", quantity: 4000 },
+        { productId: 2, name: "Product 2", quantity: 300 },
+        { productId: 3, name: "Product 3", quantity: 100 },
+        { productId: 4, name: "Product 4", quantity: 6000 },
+    ]
 
     data = [
         { id: 1, name: "Tanzeem ", date: "27-05-2025", billType: "Kaccha", amount: 5000 },
@@ -19,19 +25,16 @@ class Dashboard extends React.Component {
         return (
             <>
                 <div className="min-vh-100 bg-light p-3">
+                    
+                    <LiveStock stock={this.liveStock} />
 
-                    <div className="d-flex justify-content-center mb-4">
-                        <div className="bg-white rounded shadow p-4 w-75 text-center">
-                            Live stock value - {this.liveStock}
-                        </div>
-                    </div>
-
-                    <div className="d-flex justify-content-center mb-4"><button type="button" className="btn btn-sm btn-outline-primary">Add/Update Stock</button></div>
-
+                    <br/>
+                    <br/>
+                    
                     <div className="row g-3 mb-4">
-                        <CreateSlip />
+                        <CreateBill />
 
-                        <ViewSlipsList customerData={this.data}/>
+                        <RecentBills customerData={this.data} />
                     </div>
                 </div>
             </>

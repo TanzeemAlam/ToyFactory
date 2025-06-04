@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-export default function CreateSlip() {
+export default function CreateBill() {
 
     const resetButtonRef = useRef(null);
 
@@ -31,7 +31,7 @@ export default function CreateSlip() {
     return (
         <div className="col-md-6" id="createSlip">
             <div className="bg-white p-4 shadow rounded text-center min-vh-25">
-                <h2 className="text-3xl font-bold underline">Create Slip</h2>
+                <h2 className="text-3xl font-bold underline">Create Bill</h2>
                 <br />
                 <form onSubmit={createSlip}>
                     <div className="row mb-3">
@@ -46,8 +46,7 @@ export default function CreateSlip() {
                     <div className="row mb-3">
                         <div className="input-group mb-3">
                             <label className="input-group-text" htmlFor="product">Product</label>
-                            <select className="form-select" id="product" defaultValue="choose" required>
-                                <option value="choose">Choose...</option>
+                            <select className="form-select" id="product" defaultValue="1" required>
                                 <option value="1">Product 1</option>
                                 <option value="2">Product 2</option>
                                 <option value="3">Product 2</option>
@@ -90,7 +89,7 @@ export default function CreateSlip() {
 
                     <div className="row mb-3">
                         <div className="col">
-                            <button type="submit" className="btn btn-primary btn-lg">Create</button>
+                            <button type="submit" className="btn btn-outline-primary btn-lg">Create</button>
                         </div>
                     </div>
 
